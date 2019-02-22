@@ -1,3 +1,8 @@
+%			Project - 2: Logic Programming with Prolog
+%
+%
+%	Part 1. sum-up-numbers-simple
+
 % Check base case - list is/is not empty.
 sum-up-numbers-simple([], 0).
 % Second case - if list is not empty, and 
@@ -12,6 +17,32 @@ sum-up-numbers-simple([FirstNum | RestofList], Sum) :-
 % of the list to calculate the subsequent 
 % sum.
 sum-up-numbers-simple([FirstNum | RestofList],Sum) :-
+    not(number(FirstNum)),
+    sum-up-numbers-simple(RestofList, Sum).
+
+%
+%
+%	Part 2. sum-up-numbers-general
+
+% Check base case - list is/is not empty.
+sum-up-numbers-general([], 0).
+% Second case - if list is not empty, and 
+% the first element is a number, compute:
+% first element + rest of (current) list.
+sum-up-numbers-general([FirstNum | RestofList], Sum) :-
+	number(FirstNum),
+	sum-up-numbers-simple(RestofList, RestResult),
+	Sum is FirstNum + RestResult.
+% if the current element is not a number,
+% use the aforementioned rule on the rest
+% of the list to calculate the subsequent 
+% sum.
+sum-up-numbers-general([FirstNum | RestofList],Sum) :-
+    not(number(FirstNum)),
+    is_list(FirstNum),
+    sum-up-numbers-simple(RestofList, Sum).
+    
+sum-up-numbers-general([FirstNum | RestofList],Sum) :-
     not(number(FirstNum)),
     sum-up-numbers-simple(RestofList, Sum).
 
