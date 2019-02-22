@@ -47,3 +47,14 @@ sum-up-numbers-general([FirstElem | RestofList],Sum) :-
 sum-up-numbers-general([FirstNum | RestofList],Sum) :-
     not(number(FirstNum)),
     sum-up-numbers-general(RestofList, Sum).
+
+%	Part 4. common-unique-elements
+% 
+% first 3 rules, when list1 and/or list2 are empty, 
+% NList must also empty if it is a sublist
+common-unique-elements([], [], []).
+common-unique-elements(L1, [], []).
+common-unique-elements([], L2, []).
+
+% common-unique-elements(List1, List2, NList) :
+% 
