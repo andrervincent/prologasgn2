@@ -57,4 +57,10 @@ common-unique-elements(L1, [], []).
 common-unique-elements([], L2, []).
 
 % common-unique-elements(List1, List2, NList) :
-% 
+common-unique-elements(List1, List2, [A| B]) :- 
+% is NList a list?
+    not(is_list(A)),
+% is NList a member of either list?
+    member(A, List1),
+    member(A, List2).
+
